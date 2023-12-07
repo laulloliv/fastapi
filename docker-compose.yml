@@ -1,0 +1,22 @@
+version: "3.9"
+
+services:
+  apirest:
+    container_name: apirest
+    build: .
+    ports:
+      - "3000:3000"
+    networks:
+      - apirest-network
+
+  api-db:
+    container_name: api-db
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - apirest-network
+
+networks:
+  apirest-network:
+    driver: bridge
